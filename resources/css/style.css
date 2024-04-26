@@ -1,0 +1,8 @@
+@media (min-width: 768px) {
+  .component-resource-table > table > tbody > tr.group > td:last-child {
+    position: sticky;
+    right: 0;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
