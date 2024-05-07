@@ -2,7 +2,7 @@
 	"name": "wamesk/laravel-nova-sticky-actions",
 	"description": "Laravel Nova 4 Sticky Actions",
 	"type": "library",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "proprietary",
 	"require": {
         "laravel/nova": "^4.0"
