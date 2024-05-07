@@ -11,4 +11,18 @@
             }
         }
     }
+
+    html:not(.dark) {
+        .component-resource-table {
+            > table {
+                > tbody {
+                    > tr.group:not(:hover) {
+                        > td:last-child {
+                            background-color: rgb(255 255 255/var(--tw-bg-opacity));
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
