@@ -2,11 +2,12 @@
 	"name": "wamesk/laravel-nova-sticky-actions",
 	"description": "Laravel Nova 4 Sticky Actions",
 	"type": "library",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"license": "proprietary",
 	"require": {
-        "laravel/nova": "^4.0"
-    },
+        "laravel/nova": "^4.0",
+		"formfeed-uk/nova-theming-classes": "^1.1"
+	},
 	"autoload": {
 		"psr-4": {
 			"Wame\\LaravelNovaStickyActions\\": "src/"

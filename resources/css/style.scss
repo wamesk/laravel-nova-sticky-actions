@@ -1,5 +1,5 @@
 @media (min-width: 768px) {
-    .component-resource-table {
+    .alternative-component-resource-table {
         > table {
             > tbody {
                 > tr.group {
@@ -13,7 +13,7 @@
     }
 
     html:not(.dark) {
-        .component-resource-table {
+        .alternative-component-resource-table {
             > table {
                 > tbody {
                     > tr.group:not(:hover) {
