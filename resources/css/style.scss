@@ -1,12 +1,10 @@
 @media (min-width: 768px) {
     table[dusk="resource-table"] {
-        > table {
-            > tbody {
-                > tr.group {
-                    > td:last-child {
-                        position: sticky;
-                        right: 0;
-                    }
+        > tbody {
+            > tr.group {
+                > td:last-child {
+                    position: sticky;
+                    right: 0;
                 }
             }
         }
@@ -14,12 +12,10 @@
 
     html:not(.dark) {
         table[dusk="resource-table"] {
-            > table {
-                > tbody {
-                    > tr.group:not(:hover) {
-                        > td:last-child {
-                            background-color: rgb(255 255 255/var(--tw-bg-opacity));
-                        }
+            > tbody {
+                > tr.group:not(:hover) {
+                    > td:last-child {
+                        background-color: rgb(255 255 255/var(--tw-bg-opacity));
                     }
                 }
             }
