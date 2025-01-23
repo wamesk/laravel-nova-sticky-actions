@@ -1,5 +1,5 @@
 @media (min-width: 768px) {
-    .alternative-component-resource-table {
+    table[dusk="resource-table"] {
         > table {
             > tbody {
                 > tr.group {
@@ -13,7 +13,7 @@
     }
 
     html:not(.dark) {
-        .alternative-component-resource-table {
+        table[dusk="resource-table"] {
             > table {
                 > tbody {
                     > tr.group:not(:hover) {
