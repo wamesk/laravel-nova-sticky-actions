@@ -4,7 +4,7 @@ The module adds a sticky class to the column with actions on the index page.
 
 ## Requirements
 
-- `"laravel/nova": "^4.0|^5.0"`
+- `"laravel/nova": "^5.0"`
 
 
 ## Installation
