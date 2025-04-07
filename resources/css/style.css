@@ -1,5 +1,6 @@
 @media (min-width: 768px) {
   table[dusk=resource-table] > tbody > tr.group > td:last-child {
+    display: block;
     position: sticky;
     right: 0;
   }

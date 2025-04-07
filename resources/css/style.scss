@@ -3,6 +3,7 @@
         > tbody {
             > tr.group {
                 > td:last-child {
+                    display: block;
                     position: sticky;
                     right: 0;
                 }
