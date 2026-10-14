@@ -1,25 +1,87 @@
-@media (min-width: 768px) {
-    table[dusk="resource-table"] {
-        > tbody {
-            > tr.group {
-                > td:last-child {
-                    display: table-cell;
-                    position: sticky;
-                    right: 0;
-                }
-            }
+// Pins the controls column (the last one) of every Nova resource table to the right edge,
+// so the row actions stay visible however wide the table is.
+//
+// Nova's own table carries `dusk="resource-table"`; outl1ne/nova-sortable replaces it with
+// one that carries `data-testid="resource-table"` instead. Both are matched, nothing relies
+// on theming classes.
+
+$table: ':is(table[dusk="resource-table"], table[data-testid="resource-table"])';
+$cell: '#{$table} > :is(thead, tbody) > tr > :is(th, td):last-child';
+
+#{$cell} {
+    display: table-cell;
+    position: sticky;
+    right: 0;
+    z-index: 1;
+    // A sticky cell must be opaque, otherwise the columns scrolling under it show through.
+    background-color: rgb(var(--colors-white));
+
+    // The left edge: a hairline and a soft shadow, shown only while some columns are hidden
+    // under the pinned one (see the scroll timeline below).
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -12px;
+        width: 12px;
+        pointer-events: none;
+        border-right: 1px solid rgb(var(--colors-gray-200));
+        background: linear-gradient(to left, rgb(15 23 42 / 0.07), transparent);
+        opacity: 0;
+    }
+}
+
+#{$table} > thead > tr > th:last-child {
+    background-color: rgb(var(--colors-gray-50));
+}
+
+#{$table} > tbody > tr:hover > td:last-child {
+    background-color: rgb(var(--colors-gray-50));
+}
+
+.dark {
+    #{$cell} {
+        background-color: rgb(var(--colors-gray-800));
+
+        &::before {
+            border-right-color: rgb(var(--colors-gray-700));
+            background: linear-gradient(to left, rgb(0 0 0 / 0.35), transparent);
         }
     }
 
-    html:not(.dark) {
-        table[dusk="resource-table"] {
-            > tbody {
-                > tr.group:not(:hover) {
-                    > td:last-child {
-                        background-color: rgb(255 255 255/var(--tw-bg-opacity));
-                    }
-                }
-            }
-        }
+    #{$table} > tbody > tr:hover > td:last-child {
+        background-color: rgb(var(--colors-gray-900));
+    }
+}
+
+// The edge follows the horizontal scroll of the table's wrapper: visible from the start,
+// gone once the last column is fully scrolled into view. A table that does not overflow
+// has no active scroll timeline, so the animation does not apply and the edge stays hidden.
+@supports (animation-timeline: scroll()) {
+    #{$cell}::before {
+        animation: nova-sticky-actions-edge linear both;
+        animation-timeline: scroll(nearest inline);
+    }
+}
+
+// Browsers without scroll timelines get the edge permanently.
+@supports not (animation-timeline: scroll()) {
+    #{$cell}::before {
+        opacity: 1;
+    }
+}
+
+@keyframes nova-sticky-actions-edge {
+    from {
+        opacity: 1;
+    }
+
+    98% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
