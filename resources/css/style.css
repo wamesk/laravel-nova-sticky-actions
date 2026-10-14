@@ -1,10 +1,61 @@
-@media (min-width: 768px) {
-  .alternative-component-resource-table > table > tbody > tr.group > td:last-child {
-    position: sticky;
-    right: 0;
+:is(table[dusk=resource-table], table[data-testid=resource-table]) > :is(thead, tbody) > tr > :is(th, td):last-child {
+  position: sticky;
+  right: 0;
+  z-index: 1;
+  background-color: rgb(var(--colors-white));
+}
+:is(table[dusk=resource-table], table[data-testid=resource-table]) > :is(thead, tbody) > tr > :is(th, td):last-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -12px;
+  width: 12px;
+  pointer-events: none;
+  border-right: 1px solid rgb(var(--colors-gray-200));
+  background: linear-gradient(to left, rgba(15, 23, 42, 0.07), transparent);
+  opacity: 0;
+}
+
+:is(table[dusk=resource-table], table[data-testid=resource-table]) > thead > tr > th:last-child {
+  background-color: rgb(var(--colors-gray-50));
+}
+
+:is(table[dusk=resource-table], table[data-testid=resource-table]) > tbody > tr:hover > td:last-child {
+  background-color: rgb(var(--colors-gray-50));
+}
+
+.dark :is(table[dusk=resource-table], table[data-testid=resource-table]) > :is(thead, tbody) > tr > :is(th, td):last-child {
+  background-color: rgb(var(--colors-gray-800));
+}
+.dark :is(table[dusk=resource-table], table[data-testid=resource-table]) > :is(thead, tbody) > tr > :is(th, td):last-child::before {
+  border-right-color: rgb(var(--colors-gray-700));
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.35), transparent);
+}
+.dark :is(table[dusk=resource-table], table[data-testid=resource-table]) > tbody > tr:hover > td:last-child {
+  background-color: rgb(var(--colors-gray-900));
+}
+
+@supports (animation-timeline: scroll()) {
+  :is(table[dusk=resource-table], table[data-testid=resource-table]) > :is(thead, tbody) > tr > :is(th, td):last-child::before {
+    animation: nova-sticky-actions-edge linear both;
+    animation-timeline: scroll(nearest inline);
   }
-  html:not(.dark) .alternative-component-resource-table > table > tbody > tr.group:not(:hover) > td:last-child {
-    background-color: rgb(255, 255, 255, var(--tw-bg-opacity));
+}
+@supports not (animation-timeline: scroll()) {
+  :is(table[dusk=resource-table], table[data-testid=resource-table]) > :is(thead, tbody) > tr > :is(th, td):last-child::before {
+    opacity: 1;
+  }
+}
+@keyframes nova-sticky-actions-edge {
+  from {
+    opacity: 1;
+  }
+  98% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 
